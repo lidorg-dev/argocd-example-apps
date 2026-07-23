@@ -1,10 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: guestbook-ui
+  name: guestbook-ui-service
 spec:
-  ports:
-  - port: 80
-    targetPort: 80
+  type: NodePort
   selector:
     app: guestbook-ui
+  ports:
+    - port: 80          # The port accessible inside the cluster
+      targetPort: 80  # The port your application container listens on
+      nodePort: 30081 
